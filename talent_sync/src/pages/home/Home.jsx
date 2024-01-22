@@ -22,6 +22,8 @@ import faceSmile from '../../images/faceSmile.png'
 import messageTxt from '../../images/msgTextCircle.png'
 import settings from '../../images/settings.png'
 import TileImg from '../../components/tile/TileImg'
+import Companies from '../../components/companies/Companies'
+import ChooseClearLink from '../../components/chooseclearlink/ChooseClearLnin'
 
 const imgData = [
   microphone,
@@ -258,6 +260,8 @@ function Home() {
             </motion.div>
           </motion.div>
         </motion.div>
+        <Companies />
+        <ChooseClearLink />
       </motion.div>
     </>
   )
