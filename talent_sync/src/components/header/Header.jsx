@@ -96,107 +96,114 @@ function Header() {
         transition={{ duration: 0.5 }}
         className={classes.header__mobile}
       >
-        {!menuToggle && (
-          <motion.i
-            onClick={handleMenuToggle}
-            transition={{ duration: 0.5 }}
-            style={{
-              color: 'black',
-              fontWeight: 'bold',
-              cursor: 'pointer',
-              fontSize: '28px',
-              marginTop: '-5px',
-            }}
-            className="bi bi-list"
-          />
-        )}
-        {menuToggle && (
-          <motion.i
-            onClick={handleMenuToggle}
-            transition={{ duration: 0.5 }}
-            style={{
-              color: 'black',
-              fontWeight: 'bold',
-              cursor: 'pointer',
-              fontSize: '28px',
-              marginTop: '-5px',
-            }}
-            className="bi bi-x-square-fill"
-          />
-        )}
         <motion.div
-          style={{ backgroundImage: `url(${flowerybg})` }}
-          key={menuToggle}
-          initial={{
-            opacity: 0,
-            scale: 0.2,
-            y: '-50%',
-            boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.2)',
-          }} // Start from the middle
-          animate={{
-            opacity: 1,
-            scale: 1,
-            y: '0%',
-            boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.4)',
-          }} // Grow to cover the screen
-          exit={{ opacity: 0, scale: 0.5, y: '-50%' }}
-          transition={{ duration: 1.0 }}
-          className={`${
-            menuToggle
-              ? classes.header__mobile__menucontent
-              : classes.header__mobile__nomenucontent
-          }`}
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+          className={classes.header__mobile__container}
         >
+          {!menuToggle && (
+            <motion.i
+              onClick={handleMenuToggle}
+              transition={{ duration: 0.5 }}
+              style={{
+                color: 'black',
+                fontWeight: 'bold',
+                cursor: 'pointer',
+                fontSize: '28px',
+                marginTop: '-5px',
+              }}
+              className="bi bi-list"
+            />
+          )}
+          {menuToggle && (
+            <motion.i
+              onClick={handleMenuToggle}
+              transition={{ duration: 0.5 }}
+              style={{
+                color: 'black',
+                fontWeight: 'bold',
+                cursor: 'pointer',
+                fontSize: '28px',
+                marginTop: '-5px',
+              }}
+              className="bi bi-x-square-fill"
+            />
+          )}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            className={classes.header__mobile__menucontent__container}
+            style={{ backgroundImage: `url(${flowerybg})` }}
+            key={menuToggle}
+            initial={{
+              opacity: 0,
+              scale: 0.2,
+              y: '-50%',
+              boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.2)',
+            }} // Start from the middle
+            animate={{
+              opacity: 1,
+              scale: 1,
+              y: '0%',
+              boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.4)',
+            }} // Grow to cover the screen
+            exit={{ opacity: 0, scale: 0.5, y: '-50%' }}
+            transition={{ duration: 1.0 }}
+            className={`${
+              menuToggle
+                ? classes.header__mobile__menucontent
+                : classes.header__mobile__nomenucontent
+            }`}
           >
-            <HeaderLink
-              divClassName={classes.header__links__desktop__content}
-              textClassName={classes.header__links__desktop__content__text}
-              imgClassName={classes.header__links__desktop__content__img}
-              text={'Products'}
-              imgSrc={chevronDown}
-              alt={'chevronDown'}
-            />
-            <HeaderLink
-              divClassName={classes.header__links__desktop__content}
-              textClassName={classes.header__links__desktop__content__text}
-              imgClassName={classes.header__links__desktop__content__img}
-              text={'Solutions'}
-              imgSrc={chevronDown}
-              alt={'chevronDown'}
-            />
-            <HeaderLink
-              divClassName={classes.header__links__desktop__content}
-              textClassName={classes.header__links__desktop__content__text}
-              imgClassName={classes.header__links__desktop__content__img}
-              text={'Resources'}
-              imgSrc={chevronDown}
-              alt={'chevronDown'}
-            />
-            <HeaderLink
-              divClassName={classes.header__links__desktop__content}
-              textClassName={classes.header__links__desktop__content__text}
-              imgClassName={classes.header__links__desktop__content__img}
-              text={'Pricing'}
-              imgSrc={chevronDown}
-              alt={'chevronDown'}
-            />
-            <AnimatedButton
-              text="Talk to sales"
-              type="button"
-              onClick={() => {}}
-              className={classes.header__actions__talktosales__mobile}
-            />
-            <AnimatedButton
-              text="Signup for free"
-              type="button"
-              onClick={() => {}}
-              className={classes.header__actions__signup__mobile}
-            />
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              className={classes.header__mobile__menucontent__container}
+            >
+              <HeaderLink
+                divClassName={classes.header__links__desktop__content}
+                textClassName={classes.header__links__desktop__content__text}
+                imgClassName={classes.header__links__desktop__content__img}
+                text={'Products'}
+                imgSrc={chevronDown}
+                alt={'chevronDown'}
+              />
+              <HeaderLink
+                divClassName={classes.header__links__desktop__content}
+                textClassName={classes.header__links__desktop__content__text}
+                imgClassName={classes.header__links__desktop__content__img}
+                text={'Solutions'}
+                imgSrc={chevronDown}
+                alt={'chevronDown'}
+              />
+              <HeaderLink
+                divClassName={classes.header__links__desktop__content}
+                textClassName={classes.header__links__desktop__content__text}
+                imgClassName={classes.header__links__desktop__content__img}
+                text={'Resources'}
+                imgSrc={chevronDown}
+                alt={'chevronDown'}
+              />
+              <HeaderLink
+                divClassName={classes.header__links__desktop__content}
+                textClassName={classes.header__links__desktop__content__text}
+                imgClassName={classes.header__links__desktop__content__img}
+                text={'Pricing'}
+                imgSrc={chevronDown}
+                alt={'chevronDown'}
+              />
+              <AnimatedButton
+                text="Talk to sales"
+                type="button"
+                onClick={() => {}}
+                className={classes.header__actions__talktosales__mobile}
+              />
+              <AnimatedButton
+                text="Signup for free"
+                type="button"
+                onClick={() => {}}
+                className={classes.header__actions__signup__mobile}
+              />
+            </motion.div>
           </motion.div>
         </motion.div>
       </motion.div>
