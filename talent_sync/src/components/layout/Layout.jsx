@@ -6,11 +6,13 @@ import Footer from '../footer/Footer'
 
 function Layout({ children }) {
   return (
-    <div className={classes.layout}>
-      <Header />
-      <div className={classes.container}>{children}</div>
+    <>
+      <div className={classes.layout}>
+        <Header />
+        <div className={classes.container}>{children}</div>
+      </div>
       <Footer />
-    </div>
+    </>
   )
 }
 
