@@ -25,6 +25,7 @@ import TileImg from '../../components/tile/TileImg'
 import Companies from '../../components/companies/Companies'
 import ChooseClearLink from '../../components/chooseclearlink/ChooseClearLnin'
 import Shopify from '../../components/shopify/Shopify'
+import Faq from '../../components/faq/Faq'
 
 const imgData = [
   microphone,
@@ -264,6 +265,7 @@ function Home() {
         <Companies />
         <ChooseClearLink />
         <Shopify />
+        <Faq />
       </motion.div>
     </>
   )
