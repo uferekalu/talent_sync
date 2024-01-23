@@ -26,6 +26,7 @@ import Companies from '../../components/companies/Companies'
 import ChooseClearLink from '../../components/chooseclearlink/ChooseClearLnin'
 import Shopify from '../../components/shopify/Shopify'
 import Faq from '../../components/faq/Faq'
+import Communication from '../../components/communication/Communication'
 
 const imgData = [
   microphone,
@@ -266,6 +267,7 @@ function Home() {
         <ChooseClearLink />
         <Shopify />
         <Faq />
+        <Communication />
       </motion.div>
     </>
   )

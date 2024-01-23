@@ -30,3 +30,10 @@ export const faqData = [
       'ClearLink offers flexible meeting options. Depending on your subscription plan, you can host meetings with varying numbers of participants. Our plans are designed to accommodate small team collaborations and large-scale webinars, ensuring you have the right fit for your needs.',
   },
 ]
+
+export const commData = [
+  '30 days free trial',
+  'Cancel at any time',
+  'Access to all features',
+  'Peronalized onboarding',
+]
