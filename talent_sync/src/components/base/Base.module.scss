@@ -80,6 +80,9 @@
     display: flex;
     flex-direction: column;
     gap: 9px;
+    @media (min-width: 1000px) {
+     margin-left: auto;
+    }
 
     &__caption {
       color: var(--Blue-dark-700, #004eeb);
