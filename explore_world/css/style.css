@@ -1,0 +1,54 @@
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%; /* Set a minimum width for smaller screens */
+}
+
+.header_contaier {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-image: url('../img/background.jpg');
+  height: 1200px;
+  padding: 20px 30px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.imgHolder, .imgHolder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logoImg {
+  width: 120px;
+  height: 124px;
+}
+.links {
+  display: flex;
+  justify-content: space-around;
+  gap: 30px;
+  margin-top: 20px;
+}
+.home_link,
+.trecking_link,
+.kailash_link,
+.nepal_link,
+.peak_link,
+.hcompany_link {
+  color: #000000;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+.home_link:active {
+    border-bottom: 1px solid #F4570C;
+}
+.contactImg {
+    width: 80px;
+    height: 80px;
+    margin-top: -40px;
+}
