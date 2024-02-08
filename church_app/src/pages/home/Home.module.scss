@@ -1,0 +1,73 @@
+@import '../../styles//variables.scss';
+
+.home {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  &__heroSection {
+    @media (min-width: 560px) {
+      display: flex;
+      justify-content: space-between;
+      padding: 60px 20px;
+      height: 300px;
+    }
+    @media (max-width: 560px) {
+      display: flex;
+      flex-direction: column;
+      padding: 60px 20px;
+    }
+    &__left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      @media (min-width: 560px) {
+        width: 48%;
+      }
+      @media (max-width: 560px) {
+        width: 100%;
+      }
+      &__caption {
+        display: flex;
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: uppercase;
+        color: white;
+      }
+      &__description {
+        display: flex;
+        font-size: 35px;
+        font-weight: 600;
+        text-transform: uppercase;
+        color: white;
+      }
+
+      &__learnmore {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(
+          to right,
+          rgb(224, 220, 234),
+          rgb(238, 242, 237)
+        );
+        border-radius: 4px;
+        color: black;
+        font-weight: 600;
+        border: none;
+        padding: 5px 10px;
+        font-size: 14px;
+        width: 150px;
+        height: 50px;
+        cursor: pointer;
+        &:hover {
+          background: linear-gradient(to right, teal, rgb(76, 221, 63));
+          // font-weight: 600;
+          transition: left 0.3s ease-in-out;
+          color: white;
+        }
+      }
+    }
+  }
+}

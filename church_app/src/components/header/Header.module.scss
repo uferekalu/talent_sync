@@ -1,0 +1,164 @@
+@import '../../styles/variables.scss';
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 80px;
+  padding: 20px;
+  background: linear-gradient(to right, rgb(154, 15, 117), rgb(37, 2, 2));
+
+  &__logoHolder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 60px;
+    margin-top: -10px;
+
+    &__logo {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__linksHolder {
+    @media (max-width: 560px) {
+      display: none;
+    }
+    display: flex;
+    gap: 20px;
+
+    &__homeLink,
+    &__aboutUs,
+    &__blog {
+      font-size: 12px;
+      color: $light;
+      cursor: pointer;
+    }
+
+    &__homeLink:hover,
+    &__aboutUs:hover,
+    &__blog:hover {
+      color: yellowgreen;
+      transition:
+        color 0.3s ease,
+        color 0.3s ease;
+    }
+  }
+
+  &__contactUs__register {
+    @media (max-width: 560px) {
+      display: none;
+    }
+    display: flex;
+    gap: 20px;
+
+    &__contact {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(to right, rgb(46, 3, 166), rgb(76, 221, 63));
+      border-radius: 4px;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      font-size: 12px;
+
+      cursor: pointer;
+      &:hover {
+        background: linear-gradient(to right, teal, rgb(76, 221, 63));
+        // font-weight: 600;
+        transition: left 0.3s ease-in-out;
+      }
+    }
+    &__signup {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(
+        to right,
+        rgb(15, 147, 154),
+        rgba(63, 136, 221, 1)
+      );
+      border-radius: 4px;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      font-size: 12px;
+
+      cursor: pointer;
+      &:hover {
+        background: linear-gradient(to right, green, rgb(76, 221, 63));
+        // font-weight: 600;
+        transition: left 0.3s ease-in-out;
+      }
+    }
+  }
+
+  &__mobileMenu {
+    @media (min-width: 560px) {
+      display: none;
+    }
+    display: flex;
+
+    &__nomenucontent {
+      display: none;
+    }
+
+    &__menucontent {
+      display: block;
+      position: absolute;
+      top: 10vh;
+      left: 0;
+      padding: 20px;
+      // background-color: burlywood;
+      width: 100%;
+      height: 90vh;
+      background-size: cover;
+      background-position: center;
+      z-index: 100;
+
+      &__container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        justify-content: center;
+        align-items: center;
+        margin: 30px auto;
+
+        &__homelink,
+        &__aboutlink,
+        &__bloglink {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 14px;
+          background: linear-gradient(
+            to right,
+            rgb(154, 15, 117),
+            rgb(37, 2, 2)
+          );
+          padding: 10px;
+          border-radius: 7px;
+          width: 100px;
+          box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+          cursor: pointer;
+          color: white;
+          &:hover {
+            background: linear-gradient(
+              to right,
+              rgb(15, 38, 154),
+              rgba(63, 136, 221, 1)
+            );
+            font-weight: bold;
+            color: white;
+            transition:
+              background-color 0.3s,
+              box-shadow 0.3s;
+          }
+        }
+      }
+    }
+  }
+}
