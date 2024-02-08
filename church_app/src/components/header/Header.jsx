@@ -41,7 +41,7 @@ function Header() {
           text="About Us"
           className={classes.header__linksHolder__aboutUs}
         />
-        <Text text="Blog" className={classes.header__linksHolder__blog} />
+        {/* <Text text="Blog" className={classes.header__linksHolder__blog} /> */}
       </motion.div>
       <motion.div
         initial={{ opacity: 0, x: -50 }}
@@ -132,11 +132,23 @@ function Header() {
                 classes.header__mobileMenu__menucontent__container__aboutlink
               }
             />
-            <Text
+            {/* <Text
               text="Blog"
               className={
                 classes.header__mobileMenu__menucontent__container__bloglink
               }
+            /> */}
+            <AnimatedButton
+              text="Contact Us"
+              onClick={() => {}}
+              className={classes.header__mobileMenu__menucontent__container__contact}
+              type="button"
+            />
+            <AnimatedButton
+              text="Register"
+              onClick={() => {}}
+              className={classes.header__mobileMenu__menucontent__container__signup}
+              type="button"
             />
           </div>
         </motion.div>

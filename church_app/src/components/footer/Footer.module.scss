@@ -1,2 +1,77 @@
 @import '../../styles/index.scss';
 
+.footer {
+  background: linear-gradient(to right, rgb(11, 2, 34), rgb(5, 0, 20));
+  @media (max-width: 560px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 20px;
+  }
+  @media (min-width: 561px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    padding: 30px;
+  }
+  @media (min-width: 900px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 10px;
+    padding: 30px;
+  }
+  &__contact {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    &__logo {
+      width: 70px;
+      height: 40px;
+    }
+    &__copyright,
+    &__tel,
+    &__email {
+      display: flex;
+      font-size: 11px;
+      color: white;
+    }
+  }
+
+  &__links {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    &__quicklinks {
+      display: flex;
+      font-size: 14px;
+      font-weight: bold;
+      color: white;
+    }
+
+    &__home,
+    &__about {
+      display: flex;
+      font-size: 11px;
+      color: white;
+    }
+  }
+  &__connect {
+    @media (max-width: 560px) {
+        margin-top: 30px;
+      }
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    &__title {
+      display: flex;
+      font-size: 14px;
+      font-weight: bold;
+      color: white;
+    }
+    &__socials {
+        display: flex;
+        gap: 10px;
+    }
+  }
+}

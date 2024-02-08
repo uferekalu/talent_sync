@@ -6,7 +6,7 @@
   width: 100%;
   height: 80px;
   padding: 20px;
-  background: linear-gradient(to right, rgb(154, 15, 117), rgb(37, 2, 2));
+  background: linear-gradient(to right, rgb(22, 20, 20), rgb(15, 15, 15));
 
   &__logoHolder {
     display: flex;
@@ -32,7 +32,8 @@
     &__homeLink,
     &__aboutUs,
     &__blog {
-      font-size: 12px;
+      font-size: 16px;
+      margin-top: 7px;
       color: $light;
       cursor: pointer;
     }
@@ -156,6 +157,53 @@
             transition:
               background-color 0.3s,
               box-shadow 0.3s;
+          }
+        }
+
+        &__contact {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: linear-gradient(
+            to right,
+            rgb(46, 3, 166),
+            rgb(76, 221, 63)
+          );
+          border-radius: 4px;
+          color: white;
+          border: none;
+          padding: 10px;
+          font-size: 12px;
+          width: 100px;
+          cursor: pointer;
+          &:hover {
+            background: linear-gradient(to right, teal, rgb(76, 221, 63));
+            font-weight: 600;
+            transition: left 0.3s ease-in-out;
+          }
+        }
+
+        &__signup {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: linear-gradient(
+            to right,
+            rgb(15, 147, 154),
+            rgba(63, 136, 221, 1)
+          );
+          border-radius: 4px;
+          color: white;
+          border: none;
+          padding: 10px;
+          font-size: 12px;
+          width: 100px;
+    
+          cursor: pointer;
+          &:hover {
+            background: linear-gradient(to right, green, rgb(76, 221, 63));
+            font-weight: 600;
+            transition: left 0.3s ease-in-out;
           }
         }
       }
