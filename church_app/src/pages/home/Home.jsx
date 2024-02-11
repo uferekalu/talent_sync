@@ -1,15 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import classes from './Home.module.scss'
 import Church from '../../components/church'
 import defaultImg from '../../images/main_logo.png'
-import templeBg from '../../images/temple.jpg'
 import Text from '../../components/text/Text'
 import AnimatedButton from '../../components/button/Button'
-import lordbg from '../../images/jesus1.png'
+// import lordbg from '../../images/jesus1.png'
+import building from '../../images/building.jpg'
 import disciple1 from '../../images/disciple1.jpg'
 import disciple2 from '../../images/disciple2.jpg'
 import disciple3 from '../../images/disciple3.jpg'
+import RegisterModal from '../../components/register/RegisterModal'
 
 const relevanceData = [
   {
@@ -27,6 +28,11 @@ const relevanceData = [
 ]
 
 function Home() {
+  const [createRegister, setCreateRegister] = useState(false)
+
+  const handleCreateRegister = () => {
+    setCreateRegister(true)
+  }
   return (
     <>
       <Church
@@ -43,7 +49,7 @@ function Home() {
       >
         <motion.div
           style={{
-            backgroundImage: `url(${templeBg})`,
+            backgroundImage: `url(${building})`,
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
           }}
@@ -59,21 +65,21 @@ function Home() {
             className={classes.home__heroSection__left}
           >
             <Text
-              text="WELCOME TO DISCIPLESHIP"
+              text="WELCOME TO DISCIPLESHIP SCHOOL"
               className={classes.home__heroSection__left__caption}
             />
             <Text
-              text="Join our diet"
+              text="Join our February 2024 diet"
               className={classes.home__heroSection__left__description}
             />
             <AnimatedButton
-              text="Learn More"
-              onClick={() => {}}
+              text="Register here"
+              onClick={handleCreateRegister}
               className={classes.home__heroSection__left__learnmore}
               type="button"
             />
           </motion.div>
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
@@ -87,7 +93,7 @@ function Home() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
             />
-          </motion.div>
+          </motion.div> */}
         </motion.div>
         <motion.div
           initial={{ opacity: 0, x: -50 }}
@@ -103,13 +109,14 @@ function Home() {
           transition={{ duration: 0.5 }}
           className={classes.home__relevance}
         >
-          {relevanceData.map((data) => (
+          {relevanceData.map((data, idx) => (
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
               className={classes.home__relevance__content}
-              key={data.name}
+              // eslint-disable-next-line react/no-array-index-key
+              key={`${data.name}-${idx}`}
             >
               <motion.i
                 transition={{ duration: 0.5 }}
@@ -187,6 +194,10 @@ function Home() {
             transition={{ duration: 0.5 }}
           />
         </motion.div>
+        <RegisterModal
+          createRegister={createRegister}
+          setCreateRegister={setCreateRegister}
+        />
       </motion.div>
     </>
   )

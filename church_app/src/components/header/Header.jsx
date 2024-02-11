@@ -5,9 +5,17 @@ import logo from '../../images/main_logo.png'
 import Text from '../text/Text'
 import AnimatedButton from '../button/Button'
 import flowerybg from '../../images/flowery.jpg'
+import RegisterModal from '../register/RegisterModal'
 
 function Header() {
   const [menuToggle, setMenuToggle] = useState(false)
+  const [createRegister, setCreateRegister] = useState(false)
+
+  const handleCreateRegister = () => {
+    setCreateRegister(true)
+    setMenuToggle(false)
+  }
+
   const handleMenuToggle = () => {
     setMenuToggle((prevvState) => !prevvState)
   }
@@ -29,6 +37,45 @@ function Header() {
           alt="logo"
           className={classes.header__logoHolder__logo}
         />
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+          className={classes.header__logoHolder__name}
+        >
+          <motion.span
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className={classes.header__logoHolder__name__title1}
+          >
+            THE
+          </motion.span>
+          <motion.span
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className={classes.header__logoHolder__name__title2}
+          >
+            PRESBYTERIAN
+          </motion.span>
+          <motion.span
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className={classes.header__logoHolder__name__title3}
+          >
+            CHURCH OF NIGERIA
+          </motion.span>
+          <motion.span
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className={classes.header__logoHolder__name__title4}
+          >
+            LEKKI PARISH
+          </motion.span>
+        </motion.div>
       </motion.div>
       <motion.div
         initial={{ opacity: 0, x: -50 }}
@@ -57,7 +104,7 @@ function Header() {
         />
         <AnimatedButton
           text="Register"
-          onClick={() => {}}
+          onClick={handleCreateRegister}
           className={classes.header__contactUs__register__signup}
           type="button"
         />
@@ -141,18 +188,26 @@ function Header() {
             <AnimatedButton
               text="Contact Us"
               onClick={() => {}}
-              className={classes.header__mobileMenu__menucontent__container__contact}
+              className={
+                classes.header__mobileMenu__menucontent__container__contact
+              }
               type="button"
             />
             <AnimatedButton
               text="Register"
-              onClick={() => {}}
-              className={classes.header__mobileMenu__menucontent__container__signup}
+              onClick={handleCreateRegister}
+              className={
+                classes.header__mobileMenu__menucontent__container__signup
+              }
               type="button"
             />
           </div>
         </motion.div>
       </motion.div>
+      <RegisterModal
+        createRegister={createRegister}
+        setCreateRegister={setCreateRegister}
+      />
     </motion.div>
   )
 }

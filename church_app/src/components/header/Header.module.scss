@@ -10,15 +10,40 @@
 
   &__logoHolder {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100px;
+    gap: 10px;
+    width: 200px;
     height: 60px;
     margin-top: -10px;
 
     &__logo {
-      width: 100%;
+      width: 100px;
       height: 100%;
+    }
+
+    &__name {
+      display: flex;
+      flex-direction: column;
+      &__title1 {
+        font-size: 8px;
+        font-weight: 500;
+        color: white;
+        margin-top: 3px;
+      }
+      &__title2 {
+        font-size: 11px;
+        font-weight: 700;
+        color: white;
+      }
+      &__title3 {
+        font-size: 8px;
+        font-weight: 600;
+        color: white;
+      }
+      &__title4 {
+        font-size: 8px;
+        font-weight: 600;
+        color: white;
+      }
     }
   }
 

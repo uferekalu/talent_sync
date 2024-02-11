@@ -1,0 +1,75 @@
+@import '../../styles/variables.scss';
+
+.create__register {
+  display: block;
+  border-radius: $borderRadius;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.register__form {
+  display: flex;
+  flex-direction: column;
+  gap: 23px;
+
+  &__header__container {
+    display: flex;
+    justify-content: center;
+    // padding: 5px;
+    border-radius: $borderRadius;
+    margin-bottom: 12px;
+
+    &__text {
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 13px;
+      background: white;
+      padding: 10px;
+      border-radius: $borderRadius;
+      position: relative;
+      &::before {
+        content: '';
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        right: 5px;
+        bottom: 5px;
+        // background: linear-gradient(45deg, #e0e0e0, #ffffff);
+        border-radius: 8px;
+        z-index: -1;
+      }
+    }
+  }
+  &__firstname,
+  &__surname,
+  &__email,
+  &__phone {
+    padding: 10px;
+    border-radius: $borderRadius;
+    border: none;
+    font-size: 14px;
+  }
+
+  &__select {
+    display: flex;
+    padding: 10px;
+    border-radius: $borderRadius;
+    width: 100%;
+  }
+
+  &__registerBtn {
+    background: linear-gradient(to right, rgb(105, 58, 214), rgb(78, 204, 64));
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+}

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 function AnimatedButton({ text, onClick, className, type }) {
   return (
     <motion.button
-      whileHover={{ scale: 1.1 }}
+      whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.9 }}
       initial={{ opacity: 0, x: -50 }}
       animate={{ opacity: 1, x: 0 }}
