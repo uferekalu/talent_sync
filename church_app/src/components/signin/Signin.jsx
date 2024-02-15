@@ -23,9 +23,10 @@ function SigninModal({ createSignin, setCreateSignin }) {
     const { name, value } = event.target
     setUserData({ ...userData, [name]: value })
   }
+
   const handleRegister = async () => {
     try {
-      const response = await fetch('http://localhost:4000/api/auth/signin', {
+      const response = await fetch('https://discipleship.onrender.com/api/auth/signin', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -34,10 +35,14 @@ function SigninModal({ createSignin, setCreateSignin }) {
       })
       const data = await response.json()
       if (data.token) {
+        localStorage.setItem('userToken', data.token)
         setRegistrationSuccess(true)
-        setSigninSuccess(true)
+        setSuccessMsg('Signed In successfully')
+        setTimeout(() => {
+          setCreateSignin(false)
+          window.location.reload()
+        }, 3000)
       }
-      setSuccessMsg(data.message)
       setUserData({
         email: '',
         password: '',

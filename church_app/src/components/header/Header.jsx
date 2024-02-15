@@ -1,6 +1,10 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-undef */
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import * as XLSX from 'xlsx'
+import axios from 'axios'
 import classes from './Header.module.scss'
 import logo from '../../images/main_logo.png'
 import Text from '../text/Text'
@@ -14,6 +18,48 @@ function Header() {
   const [createRegister, setCreateRegister] = useState(false)
   const [createSignin, setCreateSignin] = useState(false)
   const currentURL = window.location.href
+  const [token, setToken] = useState(null)
+  const [usersData, setUsersData] = useState([])
+  const [decodedToken, setDecodedToken] = useState(null)
+
+  useEffect(() => {
+    try {
+      if (token) {
+        const [header, payload, signature] = token.split('.')
+        const decodedPayload = JSON.parse(atob(payload))
+        setDecodedToken(decodedPayload)
+      }
+    } catch (error) {
+      console.error('Error decoding token:', error)
+    }
+  }, [token])
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('https://discipleship.onrender.com/api')
+        setUsersData(response.data)
+      } catch (error) {
+        console.error('Error fetching data:', error)
+      }
+    }
+
+    fetchData()
+  }, [])
+
+  const exportToExcel = () => {
+    const wb = XLSX.utils.book_new()
+    const ws = XLSX.utils.json_to_sheet(usersData)
+    XLSX.utils.book_append_sheet(wb, ws, 'Users Data')
+    XLSX.writeFile(wb, 'users_data.xlsx')
+  }
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem('userToken')
+    if (storedToken) {
+      setToken(storedToken)
+    }
+  }, [])
 
   const handleCreateRegister = () => {
     setCreateRegister(true)
@@ -106,8 +152,14 @@ function Header() {
       >
         {currentURL.includes('onyeisi') && (
           <AnimatedButton
-            text="Signin"
-            onClick={handleCreateSignin}
+            text={
+              decodedToken && decodedToken.isAdmin ? 'Download Users' : 'Signin'
+            }
+            onClick={
+              decodedToken && decodedToken.isAdmin
+                ? exportToExcel
+                : handleCreateSignin
+            }
             className={classes.header__contactUs__register__contact}
             type="button"
           />
@@ -195,12 +247,24 @@ function Header() {
                 classes.header__mobileMenu__menucontent__container__aboutlink
               }
             />
-            {/* <Text
-              text="Blog"
-              className={
-                classes.header__mobileMenu__menucontent__container__bloglink
-              }
-            /> */}
+            {currentURL.includes('onyeisi') && (
+              <AnimatedButton
+                text={
+                  decodedToken && decodedToken.isAdmin
+                    ? 'Download Users'
+                    : 'Signin'
+                }
+                onClick={
+                  decodedToken && decodedToken.isAdmin
+                    ? exportToExcel
+                    : handleCreateSignin
+                }
+                className={
+                  classes.header__mobileMenu__menucontent__container__sigin
+                }
+                type="button"
+              />
+            )}
             <AnimatedButton
               text="Contact Us"
               onClick={() => {}}

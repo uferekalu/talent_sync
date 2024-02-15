@@ -207,6 +207,28 @@
             transition: left 0.3s ease-in-out;
           }
         }
+        &__sigin {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: linear-gradient(
+            to right,
+            rgb(46, 3, 166),
+            rgb(76, 221, 63)
+          );
+          border-radius: 4px;
+          color: white;
+          border: none;
+          padding: 10px;
+          font-size: 12px;
+          width: 100px;
+          cursor: pointer;
+          &:hover {
+            background: linear-gradient(to right, teal, rgb(76, 221, 63));
+            font-weight: 600;
+            transition: left 0.3s ease-in-out;
+          }
+        }
 
         &__signup {
           display: flex;

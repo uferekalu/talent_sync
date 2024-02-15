@@ -22,9 +22,6 @@ function RegisterModal({ createRegister, setCreateRegister }) {
   const [errorMsg, setErrorMsg] = useState('')
   const [registrationSuccess, setRegistrationSuccess] = useState(false)
 
-  console.log('success message', successMsg)
-  console.log('error msg', errorMsg)
-
   const handleInputChange = (event) => {
     const { name, value } = event.target
     setUserData({ ...userData, [name]: value })
@@ -32,7 +29,7 @@ function RegisterModal({ createRegister, setCreateRegister }) {
 
   const handleRegister = async () => {
     try {
-      const response = await fetch('http://localhost:4000/api', {
+      const response = await fetch('https://discipleship.onrender.com/api', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -42,6 +39,10 @@ function RegisterModal({ createRegister, setCreateRegister }) {
       const data = await response.json()
       if (data.message) {
         setRegistrationSuccess(true)
+        setTimeout(() => {
+          setCreateRegister(false)
+          window.location.reload()
+        }, 3000)
       }
       setSuccessMsg(data.message)
       setUserData({
