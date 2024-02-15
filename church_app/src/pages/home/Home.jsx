@@ -79,21 +79,6 @@ function Home() {
               type="button"
             />
           </motion.div>
-          {/* <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            className={classes.home__heroSection__right}
-          >
-            <motion.img
-              src={lordbg}
-              alt="logo"
-              className={classes.home__heroSection__right__img}
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-            />
-          </motion.div> */}
         </motion.div>
         <motion.div
           initial={{ opacity: 0, x: -50 }}

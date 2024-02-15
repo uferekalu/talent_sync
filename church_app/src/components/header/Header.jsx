@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import classes from './Header.module.scss'
@@ -6,13 +7,20 @@ import Text from '../text/Text'
 import AnimatedButton from '../button/Button'
 import flowerybg from '../../images/flowery.jpg'
 import RegisterModal from '../register/RegisterModal'
+import SigninModal from '../signin/Signin'
 
 function Header() {
   const [menuToggle, setMenuToggle] = useState(false)
   const [createRegister, setCreateRegister] = useState(false)
+  const [createSignin, setCreateSignin] = useState(false)
+  const currentURL = window.location.href
 
   const handleCreateRegister = () => {
     setCreateRegister(true)
+    setMenuToggle(false)
+  }
+  const handleCreateSignin = () => {
+    setCreateSignin(true)
     setMenuToggle(false)
   }
 
@@ -96,6 +104,14 @@ function Header() {
         transition={{ duration: 0.5 }}
         className={classes.header__contactUs__register}
       >
+        {currentURL.includes('onyeisi') && (
+          <AnimatedButton
+            text="Signin"
+            onClick={handleCreateSignin}
+            className={classes.header__contactUs__register__contact}
+            type="button"
+          />
+        )}
         <AnimatedButton
           text="Contact Us"
           onClick={() => {}}
@@ -207,6 +223,10 @@ function Header() {
       <RegisterModal
         createRegister={createRegister}
         setCreateRegister={setCreateRegister}
+      />
+      <SigninModal
+        createSignin={createSignin}
+        setCreateSignin={setCreateSignin}
       />
     </motion.div>
   )

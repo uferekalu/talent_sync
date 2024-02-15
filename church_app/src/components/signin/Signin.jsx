@@ -5,34 +5,27 @@ import { motion } from 'framer-motion'
 import PropTypes from 'prop-types'
 import GeneralModal from '../modal/GeneralModal'
 import signupBg from '../../images/signup.jpg'
-import classes from './RegisterModal.module.scss'
+import classes from './Signin.module.scss'
 import AnimatedInput from '../input/AnimatedInput'
 import AnimatedButton from '../button/Button'
 import DismissibleAlert from '../alert/AlertComp'
 
-function RegisterModal({ createRegister, setCreateRegister }) {
-  const [userData, setUserData] = useState({
-    firstname: '',
-    surname: '',
-    email: '',
-    phone: '',
-    kit: '',
-  })
+function SigninModal({ createSignin, setCreateSignin }) {
   const [successMsg, setSuccessMsg] = useState('')
   const [errorMsg, setErrorMsg] = useState('')
+  const [userData, setUserData] = useState({
+    email: '',
+    password: '',
+  })
   const [registrationSuccess, setRegistrationSuccess] = useState(false)
-
-  console.log('success message', successMsg)
-  console.log('error msg', errorMsg)
 
   const handleInputChange = (event) => {
     const { name, value } = event.target
     setUserData({ ...userData, [name]: value })
   }
-
   const handleRegister = async () => {
     try {
-      const response = await fetch('http://localhost:4000/api', {
+      const response = await fetch('http://localhost:4000/api/auth/signin', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -40,16 +33,14 @@ function RegisterModal({ createRegister, setCreateRegister }) {
         body: JSON.stringify(userData),
       })
       const data = await response.json()
-      if (data.message) {
+      if (data.token) {
         setRegistrationSuccess(true)
+        setSigninSuccess(true)
       }
       setSuccessMsg(data.message)
       setUserData({
-        firstname: '',
-        surname: '',
         email: '',
-        phone: '',
-        kit: '',
+        password: '',
       })
     } catch (error) {
       setErrorMsg(error)
@@ -59,18 +50,18 @@ function RegisterModal({ createRegister, setCreateRegister }) {
   return (
     <GeneralModal
       size="lg"
-      show={createRegister}
+      show={createSignin}
       onHide={() => {
-        setCreateRegister(false)
+        setCreateSignin(false)
         window.location.reload()
       }}
-      className={classes.create__register}
+      className={classes.create__signin}
       style={{ backgroundImage: `url(${signupBg})` }}
       style1={{
         marginTop: '10vh',
       }}
     >
-      <Modal.Body className={classes.register__form}>
+      <Modal.Body className={classes.signin__form}>
         {registrationSuccess && (
           <DismissibleAlert
             variant="success"
@@ -87,73 +78,43 @@ function RegisterModal({ createRegister, setCreateRegister }) {
             onClose={() => setRegistrationSuccess(false)}
           />
         )}
-        <motion.form className={classes.register__form}>
+        <motion.form className={classes.signin__form}>
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
-            className={classes.register__form__header__container}
+            className={classes.signin__form__header__container}
           >
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
-              className={classes.register__form__header__container__text}
+              className={classes.signin__form__header__container__text}
             >
-              Register for February 2024 Diet
+              Sign In
             </motion.div>
           </motion.div>
-          <AnimatedInput
-            type="text"
-            placeholder="First name"
-            name="firstname"
-            value={userData.firstname}
-            onChange={handleInputChange}
-            className={classes.register__form__firstname}
-          />
-          <AnimatedInput
-            type="text"
-            placeholder="Surname"
-            name="surname"
-            value={userData.surname}
-            onChange={handleInputChange}
-            className={classes.register__form__surname}
-          />
           <AnimatedInput
             type="email"
             placeholder="Email"
             name="email"
             value={userData.email}
             onChange={handleInputChange}
-            className={classes.register__form__email}
+            className={classes.signin__form__email}
           />
           <AnimatedInput
-            type="text"
-            placeholder="Phone"
-            name="phone"
-            value={userData.phone}
+            type="password"
+            placeholder="Password"
+            name="password"
+            value={userData.password}
             onChange={handleInputChange}
-            className={classes.register__form__phone}
+            className={classes.signin__form__password}
           />
-          <motion.select
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            className={classes.register__form__select}
-            onChange={handleInputChange}
-            value={userData.kit}
-            name="kit"
-          >
-            <option value="">Select kit</option>
-            <option value="Survival Kit 1">Survival Kit 1</option>
-            <option value="Survival Kit 2">Survival Kit 2</option>
-            <option value="Arrival Kit">Arrival Kit</option>
-          </motion.select>
           <AnimatedButton
             text="Submit"
             type="button"
             onClick={handleRegister}
-            className={classes.register__form__registerBtn}
+            className={classes.signin__form__registerBtn}
           />
         </motion.form>
       </Modal.Body>
@@ -161,9 +122,9 @@ function RegisterModal({ createRegister, setCreateRegister }) {
   )
 }
 
-RegisterModal.propTypes = {
-  createRegister: PropTypes.bool.isRequired,
-  setCreateRegister: PropTypes.func.isRequired,
+SigninModal.propTypes = {
+  createSignin: PropTypes.bool.isRequired,
+  setCreateSignin: PropTypes.func.isRequired,
 }
 
-export default RegisterModal
+export default SigninModal
