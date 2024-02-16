@@ -195,4 +195,36 @@
       }
     }
   }
+  &__contact {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+
+    &__title {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: auto;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    &__addressholder,
+    &__phoneHolder,
+    &__emailHolder,
+    &__websiteHolder {
+      display: flex;
+      gap: 10px;
+      &__addressText,
+      &__phoneNumber,
+      &__emailText,
+      &__url {
+        font-size: 13px;
+        color: black;
+      }
+    }
+  }
 }

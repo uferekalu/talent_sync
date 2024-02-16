@@ -17,6 +17,10 @@ function RegisterModal({ createRegister, setCreateRegister }) {
     email: '',
     phone: '',
     kit: '',
+    address: '',
+    city: '',
+    state: '',
+    country: '',
   })
   const [successMsg, setSuccessMsg] = useState('')
   const [errorMsg, setErrorMsg] = useState('')
@@ -36,6 +40,13 @@ function RegisterModal({ createRegister, setCreateRegister }) {
         },
         body: JSON.stringify(userData),
       })
+      if (!response.ok) {
+        const errorMessage = await response.json()
+        if (response.status === 400) {
+          setErrorMsg(errorMessage.message)
+        }
+        return
+      }
       const data = await response.json()
       if (data.message) {
         setRegistrationSuccess(true)
@@ -51,9 +62,13 @@ function RegisterModal({ createRegister, setCreateRegister }) {
         email: '',
         phone: '',
         kit: '',
+        address: '',
+        city: '',
+        state: '',
+        country: '',
       })
     } catch (error) {
-      setErrorMsg(error)
+      setErrorMsg(error.message)
     }
   }
 
@@ -68,7 +83,7 @@ function RegisterModal({ createRegister, setCreateRegister }) {
       className={classes.create__register}
       style={{ backgroundImage: `url(${signupBg})` }}
       style1={{
-        marginTop: '10vh',
+        marginTop: '5vh',
       }}
     >
       <Modal.Body className={classes.register__form}>
@@ -150,6 +165,47 @@ function RegisterModal({ createRegister, setCreateRegister }) {
             <option value="Survival Kit 2">Survival Kit 2</option>
             <option value="Arrival Kit">Arrival Kit</option>
           </motion.select>
+          <AnimatedInput
+            type="text"
+            placeholder="Address"
+            name="address"
+            value={userData.address}
+            onChange={handleInputChange}
+            className={classes.register__form__address}
+          />
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className={classes.register__form__citystate__holder}
+          >
+            <AnimatedInput
+              type="text"
+              placeholder="City"
+              name="city"
+              value={userData.city}
+              onChange={handleInputChange}
+              className={classes.register__form__citystate__holder__city}
+            />
+            <AnimatedInput
+              type="text"
+              placeholder="State"
+              name="state"
+              value={userData.state}
+              onChange={handleInputChange}
+              className={
+                classes.register__form__citystate__holder__state
+              }
+            />
+          </motion.div>
+          <AnimatedInput
+            type="text"
+            placeholder="Country"
+            name="country"
+            value={userData.country}
+            onChange={handleInputChange}
+            className={classes.register__form__country}
+          />
           <AnimatedButton
             text="Submit"
             type="button"

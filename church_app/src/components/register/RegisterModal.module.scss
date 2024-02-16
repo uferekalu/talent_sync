@@ -44,7 +44,9 @@
   &__firstname,
   &__surname,
   &__email,
-  &__phone {
+  &__phone,
+  &__address,
+  &__country {
     padding: 10px;
     border-radius: $borderRadius;
     border: none;
@@ -73,6 +75,22 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: auto;
+  }
 
+  &__citystate__holder {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 10px;
+    gap: 10px;
+    &__city,
+    &__state {
+      padding: 10px;
+      border-radius: $borderRadius;
+      border: none;
+      font-size: 14px;
+      width: 47%;
+    }
   }
 }

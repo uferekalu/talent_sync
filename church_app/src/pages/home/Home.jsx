@@ -148,6 +148,110 @@ function Home() {
             </motion.div>
           ))}
         </motion.div>
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+          className={classes.home__contact}
+          id='contactUs'
+        >
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className={classes.home__contact__title}
+          >
+            Contact Us:
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className={classes.home__contact__addressholder}
+          >
+            <motion.i
+              transition={{ duration: 0.5 }}
+              style={{
+                color: 'black',
+                fontWeight: 'bold',
+                cursor: 'pointer',
+                fontSize: '14px',
+                
+              }}
+              className="bi bi-compass"
+            />
+            <Text
+              text="KM 22, Ikota Lekki-Epe Expressway, Lagos, Nigeria"
+              className={classes.home__contact__addressholder__addressText}
+            />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className={classes.home__contact__phoneHolder}
+          >
+            <motion.i
+              transition={{ duration: 0.5 }}
+              style={{
+                color: 'Black',
+                fontWeight: 'bold',
+                cursor: 'pointer',
+                fontSize: '14px',
+                
+              }}
+              className="bi bi-telephone-fill"
+            />
+            <Text
+              text="0803 622 9322"
+              className={classes.home__contact__phoneHolder__phoneNumber}
+            />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className={classes.home__contact__emailHolder}
+          >
+            <motion.i
+              transition={{ duration: 0.5 }}
+              style={{
+                color: 'Black',
+                fontWeight: 'bold',
+                cursor: 'pointer',
+                fontSize: '14px',
+                
+              }}
+              className="bi bi-telephone-fill"
+            />
+            <Text
+              text="pcnlekki@yahoo.com"
+              className={classes.home__contact__emailHolder__emailText}
+            />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className={classes.home__contact__websiteHolder}
+          >
+            <motion.i
+              transition={{ duration: 0.5 }}
+              style={{
+                color: 'Black',
+                fontWeight: 'bold',
+                cursor: 'pointer',
+                fontSize: '14px',
+                
+              }}
+              className="bi bi-globe"
+            />
+            <Text
+              text="pcnlekki.org"
+              className={classes.home__contact__websiteHolder__url}
+            />
+          </motion.div>
+        </motion.div>
 
         <RegisterModal
           createRegister={createRegister}
