@@ -1,77 +1,59 @@
 @import '../../styles/index.scss';
 
 .footer {
-  background: teal;
-  @media (max-width: 560px) {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    padding: 20px;
-  }
-  @media (min-width: 561px) {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 10px;
-    padding: 30px;
-  }
-  @media (min-width: 900px) {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 10px;
-    padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 10px 20px 10px;
+  margin-bottom: 0px;
+  background: linear-gradient(to right, rgb(22, 20, 20), rgb(15, 15, 15));
+  &__logoHolder {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   &__contact {
     display: flex;
-    gap: 20px;
     flex-direction: column;
-    &__logo {
-      width: 70px;
-      height: 40px;
-    }
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
     &__copyright,
     &__tel,
     &__email {
-      display: flex;
-      font-size: 11px;
+      font-size: 10px;
       color: white;
     }
   }
-
   &__links {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-
+    justify-content: center;
+    align-items: center;
     &__quicklinks {
-      display: flex;
-      font-size: 14px;
-      font-weight: bold;
+      font-size: 13px;
+      font-weight: 600;
       color: white;
+      text-transform: uppercase;
+      margin-bottom: 7px;
     }
-
-    &__home,
-    &__about {
-      display: flex;
-      font-size: 11px;
+    &__home, &__about {
+      font-size: 10px;
       color: white;
+      cursor: pointer;
+      margin-bottom: 7px;
     }
   }
-  &__connect {
-    @media (max-width: 560px) {
-        margin-top: 30px;
-      }
+  &__connect__socials {
     display: flex;
-    flex-direction: column;
     gap: 20px;
-    &__title {
-      display: flex;
-      font-size: 14px;
-      font-weight: bold;
-      color: white;
-    }
-    &__socials {
-        display: flex;
-        gap: 10px;
-    }
+    margin-top: -20px;
+    margin-bottom: 10px;
   }
 }

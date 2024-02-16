@@ -4,16 +4,18 @@
 import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import * as XLSX from 'xlsx'
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import classes from './Header.module.scss'
-import logo from '../../images/main_logo.png'
 import Text from '../text/Text'
 import AnimatedButton from '../button/Button'
 import flowerybg from '../../images/flowery.jpg'
 import RegisterModal from '../register/RegisterModal'
 import SigninModal from '../signin/Signin'
+import HeaderLogo from './HeaderLogo'
 
 function Header() {
+  const navigate = useNavigate()
   const [menuToggle, setMenuToggle] = useState(false)
   const [createRegister, setCreateRegister] = useState(false)
   const [createSignin, setCreateSignin] = useState(false)
@@ -37,7 +39,9 @@ function Header() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://discipleship.onrender.com/api')
+        const response = await axios.get(
+          'https://discipleship.onrender.com/api',
+        )
         setUsersData(response.data)
       } catch (error) {
         console.error('Error fetching data:', error)
@@ -80,64 +84,18 @@ function Header() {
       transition={{ duration: 0.5 }}
       className={classes.header}
     >
-      <motion.div
-        initial={{ opacity: 0, x: -50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.5 }}
-        className={classes.header__logoHolder}
-      >
-        <motion.img
-          src={logo}
-          alt="logo"
-          className={classes.header__logoHolder__logo}
-        />
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
-          className={classes.header__logoHolder__name}
-        >
-          <motion.span
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            className={classes.header__logoHolder__name__title1}
-          >
-            THE
-          </motion.span>
-          <motion.span
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            className={classes.header__logoHolder__name__title2}
-          >
-            PRESBYTERIAN
-          </motion.span>
-          <motion.span
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            className={classes.header__logoHolder__name__title3}
-          >
-            CHURCH OF NIGERIA
-          </motion.span>
-          <motion.span
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            className={classes.header__logoHolder__name__title4}
-          >
-            LEKKI PARISH
-          </motion.span>
-        </motion.div>
-      </motion.div>
+      <HeaderLogo />
       <motion.div
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5 }}
         className={classes.header__linksHolder}
       >
-        <Text text="Home" className={classes.header__linksHolder__homeLink} />
+        <Text
+          text="Home"
+          className={classes.header__linksHolder__homeLink}
+          onClick={() => navigate('/')}
+        />
         <Text
           text="About Us"
           className={classes.header__linksHolder__aboutUs}
@@ -240,6 +198,10 @@ function Header() {
               className={
                 classes.header__mobileMenu__menucontent__container__homelink
               }
+              onClick={() => {
+                navigate('/')
+                setMenuToggle(false)
+              }}
             />
             <Text
               text="About Us"

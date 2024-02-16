@@ -1,10 +1,15 @@
+/* eslint-disable no-undef */
 import React from 'react'
+
 import { motion } from 'framer-motion'
 import classes from './Footer.module.scss'
-import logo from '../../images/main_logo.png'
 import Text from '../text/Text'
+import HeaderLogo from '../header/HeaderLogo'
 
 function Footer() {
+  const handleSocialLink = (link) => {
+    window.open(link, '_blank')
+  }
   return (
     <motion.div
       initial={{ opacity: 0, x: -50 }}
@@ -16,25 +21,9 @@ function Footer() {
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5 }}
-        className={classes.footer__contact}
+        className={classes.footer__logoHolder}
       >
-        <motion.img
-          src={logo}
-          alt="logo"
-          className={classes.footer__contact__logo}
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
-        />
-        <Text
-          text="© Copyright 2024"
-          className={classes.footer__contact__copyright}
-        />
-        <Text text="+2347032936214" className={classes.footer__contact__tel} />
-        <Text
-          text="uferepeace@gmail.com"
-          className={classes.footer__contact__email}
-        />
+        <HeaderLogo />
       </motion.div>
       <motion.div
         initial={{ opacity: 0, x: -50 }}
@@ -42,7 +31,6 @@ function Footer() {
         transition={{ duration: 0.5 }}
         className={classes.footer__links}
       >
-        <span className={classes.footer__links__quicklinks}>Quicklinks</span>
         <span className={classes.footer__links__home}>Home</span>
         <span className={classes.footer__links__about}>About Us</span>
       </motion.div>
@@ -68,6 +56,11 @@ function Footer() {
               fontSize: '17px',
               marginTop: '-10px',
             }}
+            onClick={() =>
+              handleSocialLink(
+                'https://web.facebook.com/pcnlekkiparish/?_rdc=1&_rdr',
+              )
+            }
             className="bi bi-facebook"
           />
           <motion.i
@@ -79,7 +72,7 @@ function Footer() {
               fontSize: '17px',
               marginTop: '-10px',
             }}
-            className="bi bi-twitter-x"
+            className="bi bi-youtube"
           />
           <motion.i
             transition={{ duration: 0.5 }}
@@ -90,9 +83,20 @@ function Footer() {
               fontSize: '17px',
               marginTop: '-10px',
             }}
-            className="bi bi-linkedin"
+            className="bi bi-instagram"
           />
         </motion.div>
+        <motion.div
+        initial={{ opacity: 0, x: -50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.5 }}
+        className={classes.footer__contact}
+      >
+        <Text
+          text="© Copyright 2024"
+          className={classes.footer__contact__copyright}
+        />
+      </motion.div>
       </motion.div>
     </motion.div>
   )

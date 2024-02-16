@@ -5,25 +5,38 @@ import Church from '../../components/church'
 import defaultImg from '../../images/main_logo.png'
 import Text from '../../components/text/Text'
 import AnimatedButton from '../../components/button/Button'
-// import lordbg from '../../images/jesus1.png'
-import building from '../../images/building.jpg'
-import disciple1 from '../../images/disciple1.jpg'
-import disciple2 from '../../images/disciple2.jpg'
-import disciple3 from '../../images/disciple3.jpg'
+import cross from '../../images/cross.jpg'
 import RegisterModal from '../../components/register/RegisterModal'
 
 const relevanceData = [
   {
-    icon: 'bi bi-file-earmark-person',
-    title: 'About Us',
+    icon: 'bi bi-book-half',
+    title: 'Survival Kit 1',
+    description: `Welcome to the beginning of the discipleship program. Being a Christian is far 
+      more than trusting God for salvation. You probably 
+      have discovered, the harder you try the more difficult 
+      it is to grow spiritually and live out your professed faith.
+      You can win!! Survival is a promised certainty for you, if you desire it.
+      The survival kit 1 shares five keys to effective spiritual growth. These 
+      truths will help you mature spiritually, in the years to come.`,
   },
   {
-    icon: 'bi bi-activity',
-    title: 'Get involved',
+    icon: 'bi bi-book-half',
+    title: 'Survival Kit 2',
+    description: `This is for those who have completed KIT 1 and are actively serving 
+    in various capacities in ministering to the church. Just as there are growth stages in 
+    life, there are also Christian growth stages.
+    We are constantly faced with the challenge of identity, the meaning and effect of our identity to our world.
+    You are a minister, a servant of God!!! Survival kit 2 helps us review and reshape our values, understand our calling, 
+    and learn to serve God and shine forth God’s light in our various vocations.`,
   },
   {
-    icon: 'bi bi-airplane-engines-fill',
-    title: 'Giving Back',
+    icon: 'bi bi-book-half',
+    title: 'Arrival Kit',
+    description: `This is the third step on the discipleship course ladder. This course is 
+    meant for those who have completed the survival kit 2. It aims to help the servant minister live, 
+    as well as actively spur other believers to embrace a new lifestyle on arriving into the Lord’s kingdom.
+    It delves into kingdom lifestyles, dealing with strongholds and attitudes and the journey beyond.`,
   },
 ]
 
@@ -49,9 +62,9 @@ function Home() {
       >
         <motion.div
           style={{
-            backgroundImage: `url(${building})`,
+            backgroundImage: `url(${cross})`,
             backgroundSize: 'cover',
-            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center',
           }}
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
@@ -80,13 +93,24 @@ function Home() {
             />
           </motion.div>
         </motion.div>
+        <Text
+          text={`...Then Jesus came to them and said, all authority in heaven and on Earth has been given to me.
+							Therefore go and make disciples of all nations baptizing them in the name of the father and the son and the
+							Holy Spirit and teaching them to obey everything I have commanded you and surely 
+							I am with you always to the very end of the age.`}
+          className={classes.home__welcome__description}
+        />
+        <Text
+          text={` -- Matthew 28:18-20`}
+          className={classes.home__welcome__description__verse}
+        />
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
           className={classes.home__about__heading}
         >
-          {" A Disciple that's relevant"}
+          Our Discipleship Classes
         </motion.div>
         <motion.div
           initial={{ opacity: 0, x: -50 }}
@@ -118,67 +142,13 @@ function Home() {
                 className={classes.home__relevance__content__about}
               />
               <Text
-                text="It has survived not only five centuries, but also the leap into 
-              electronic typesetting, remaining essentially unchanged. It was popularised 
-              in the 1960s with the release of Letraset sheets containing Lorem 
-              Ipsum passages, and more recently with desktop publishing software like Aldus
-               PageMaker including versions of Lorem Ipsum"
+                text={data.description}
                 className={classes.home__relevance__content__description}
               />
             </motion.div>
           ))}
         </motion.div>
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
-          className={classes.home__love__compassion}
-        >
-          Love and compassion
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
-          className={classes.home__compassion__detail}
-        >
-          {`It has survived not only five centuries, but also the leap into 
-              electronic typesetting, remaining essentially unchanged. It was popularised 
-              in the 1960s with the release of Letraset sheets containing Lorem 
-              Ipsum passages, and more recently with desktop publishing software like Aldus
-               PageMaker including versions of Lorem Ipsum`}
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
-          className={classes.home__disciples__teaching}
-        >
-          <motion.img
-            src={disciple1}
-            alt="logo"
-            className={classes.home__disciples__teaching__img}
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-          />
-          <motion.img
-            src={disciple2}
-            alt="logo"
-            className={classes.home__disciples__teaching__img}
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-          />
-          <motion.img
-            src={disciple3}
-            alt="logo"
-            className={classes.home__disciples__teaching__img}
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-          />
-        </motion.div>
+
         <RegisterModal
           createRegister={createRegister}
           setCreateRegister={setCreateRegister}

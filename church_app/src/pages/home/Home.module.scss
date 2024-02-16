@@ -91,11 +91,12 @@
       }
     }
   }
-  &__about__heading {
+  &__about__heading,
+  &__welcome {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 60px auto 10px auto;
+    margin: 30px auto 10px auto;
     font-size: 20px;
     color: black;
     text-transform: uppercase;
@@ -111,8 +112,7 @@
       gap: 30px;
       margin: auto;
       width: 600px;
-    
-      //   margin-top: 20px;
+      margin-bottom: 30px;
     }
     @media (max-width: 720px) {
       display: grid;
@@ -153,15 +153,26 @@
     text-transform: uppercase;
     font-size: 20px;
   }
-  &__compassion__detail {
+  &__compassion__detail,
+  &__welcome__description {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 12px;
+    font-size: 13px;
     color: black;
-    margin: 30px auto 10px auto;
+    margin: 20px auto;
     text-align: center;
-    width: 300px;
+    width: 80%;
+    font-style: italic;
+
+    &__verse {
+      font-size: 13px;
+      color: black;
+      margin: 0px auto;
+      justify-content: center;
+      align-items: center;
+      font-weight: 700;
+    }
   }
 
   &__disciples__teaching {
@@ -172,17 +183,16 @@
     margin: 30px auto 20px auto;
 
     &__img {
-        @media (min-width: 560px) {
-            width: 200px;
-            height: 200px;
-          }
-       
-        @media (max-width: 560px) {
-            width: 110px;
-            height: 110px;
-            border-radius: 8px;;
-          }
-       
+      @media (min-width: 560px) {
+        width: 200px;
+        height: 200px;
+      }
+
+      @media (max-width: 560px) {
+        width: 110px;
+        height: 110px;
+        border-radius: 8px;
+      }
     }
   }
 }
