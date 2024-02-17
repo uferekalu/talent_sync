@@ -96,11 +96,6 @@ function Header() {
           className={classes.header__linksHolder__homeLink}
           onClick={() => navigate('/')}
         />
-        <Text
-          text="About Us"
-          className={classes.header__linksHolder__aboutUs}
-        />
-        {/* <Text text="Blog" className={classes.header__linksHolder__blog} /> */}
       </motion.div>
       <motion.div
         initial={{ opacity: 0, x: -50 }}
@@ -122,12 +117,6 @@ function Header() {
             type="button"
           />
         )}
-        <AnimatedButton
-          text="Contact Us"
-          onClick={() => {}}
-          className={classes.header__contactUs__register__contact}
-          type="button"
-        />
         <AnimatedButton
           text="Register"
           onClick={handleCreateRegister}
@@ -203,12 +192,6 @@ function Header() {
                 setMenuToggle(false)
               }}
             />
-            <Text
-              text="About Us"
-              className={
-                classes.header__mobileMenu__menucontent__container__aboutlink
-              }
-            />
             {currentURL.includes('onyeisi') && (
               <AnimatedButton
                 text={
@@ -227,14 +210,7 @@ function Header() {
                 type="button"
               />
             )}
-            <AnimatedButton
-              text="Contact Us"
-              onClick={() => {}}
-              className={
-                classes.header__mobileMenu__menucontent__container__contact
-              }
-              type="button"
-            />
+
             <AnimatedButton
               text="Register"
               onClick={handleCreateRegister}

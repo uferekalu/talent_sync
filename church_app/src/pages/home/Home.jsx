@@ -49,8 +49,8 @@ function Home() {
   return (
     <>
       <Church
-        title="Home Discipleship"
-        description="This is home page."
+        title="Discipleship School"
+        description="This is Discipleship School."
         url="/"
         image={defaultImg}
       />
