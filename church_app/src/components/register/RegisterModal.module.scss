@@ -59,6 +59,12 @@
     border-radius: $borderRadius;
     width: 100%;
   }
+  &__select__medium {
+    display: flex;
+    padding: 10px;
+    border-radius: $borderRadius;
+    width: 100%;
+  }
 
   &__registerBtn {
     @media (max-width: 560px) {

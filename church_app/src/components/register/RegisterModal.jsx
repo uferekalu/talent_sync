@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-curly-brace-presence */
 /* eslint-disable no-undef */
 import React, { useState } from 'react'
 import { Modal } from 'react-bootstrap'
@@ -21,6 +22,7 @@ function RegisterModal({ createRegister, setCreateRegister }) {
     city: '',
     state: '',
     country: '',
+    medium: ''
   })
   const [successMsg, setSuccessMsg] = useState('')
   const [errorMsg, setErrorMsg] = useState('')
@@ -66,6 +68,7 @@ function RegisterModal({ createRegister, setCreateRegister }) {
         city: '',
         state: '',
         country: '',
+        medium: ''
       })
     } catch (error) {
       setErrorMsg(error.message)
@@ -164,6 +167,20 @@ function RegisterModal({ createRegister, setCreateRegister }) {
             <option value="Survival Kit 1">Survival Kit 1</option>
             <option value="Survival Kit 2">Survival Kit 2</option>
             <option value="Arrival Kit">Arrival Kit</option>
+          </motion.select>
+          <motion.select
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className={classes.register__form__select__medium}
+            onChange={handleInputChange}
+            value={userData.medium}
+            name="medium"
+          >
+            <option value="">Select means of doing the program</option>
+            <option value="online">Online</option>
+            <option value="Physical (PCN Ikota Church)">{"Physical (PCN Ikota Church)"}</option>
+            
           </motion.select>
           <AnimatedInput
             type="text"
