@@ -59,7 +59,7 @@
     border-radius: $borderRadius;
     width: 100%;
   }
-  &__select__medium {
+  &__medium {
     display: flex;
     padding: 10px;
     border-radius: $borderRadius;
@@ -96,7 +96,40 @@
       border-radius: $borderRadius;
       border: none;
       font-size: 14px;
-      width: 47%;
+      width: 100%;
     }
   }
+  &__errorBorder {
+    border: 1px solid red
+  }
+
+  &__cityHolder, &__stateHolder {
+    display: flex;
+    flex-direction: column;
+    width: 48%;
+  }
+}
+.error {
+  color: red;
+  font-size: 12px;
+  font-style: italic;
+  background-color: white;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  width: fit-content;
+  margin-top: -16px;
+  padding: 2px;
+  border-radius: 3px;
+}
+.error__city, .error__state {
+  color: red;
+  font-size: 12px;
+  font-style: italic;
+  background-color: white;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  width: fit-content;
+  margin-top: 7px;
+  padding: 2px;
+  border-radius: 3px;
 }
