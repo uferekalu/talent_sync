@@ -18,6 +18,7 @@ function SigninModal({ createSignin, setCreateSignin }) {
     password: '',
   })
   const [registrationSuccess, setRegistrationSuccess] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   const handleInputChange = (event) => {
     const { name, value } = event.target
@@ -26,13 +27,17 @@ function SigninModal({ createSignin, setCreateSignin }) {
 
   const handleRegister = async () => {
     try {
-      const response = await fetch('https://discipleship.onrender.com/api/auth/signin', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+      setLoading(true)
+      const response = await fetch(
+        'https://discipleship.onrender.com/api/auth/signin',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(userData),
         },
-        body: JSON.stringify(userData),
-      })
+      )
       const data = await response.json()
       if (data.token) {
         localStorage.setItem('userToken', data.token)
@@ -43,6 +48,7 @@ function SigninModal({ createSignin, setCreateSignin }) {
           window.location.reload()
         }, 3000)
       }
+      setLoading(false)
       setUserData({
         email: '',
         password: '',
@@ -96,7 +102,7 @@ function SigninModal({ createSignin, setCreateSignin }) {
               transition={{ duration: 0.5 }}
               className={classes.signin__form__header__container__text}
             >
-              Sign In
+              Signin
             </motion.div>
           </motion.div>
           <AnimatedInput
@@ -116,7 +122,8 @@ function SigninModal({ createSignin, setCreateSignin }) {
             className={classes.signin__form__password}
           />
           <AnimatedButton
-            text="Submit"
+            disabled={loading}
+            text={loading ? 'Loading' : 'Submit'}
             type="button"
             onClick={handleRegister}
             className={classes.signin__form__registerBtn}

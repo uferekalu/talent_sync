@@ -104,6 +104,39 @@
       }
     }
   }
+
+  &__select__download__holder {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+  }
+
+  &__filterKit {
+    display: flex;
+    padding: 10px;
+    border-radius: $borderRadius;
+    width: 150px;
+    
+  }
+
+  &__select__download__btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, rgb(46, 3, 166), rgb(76, 221, 63));
+    border-radius: 4px;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    font-size: 12px;
+
+    cursor: pointer;
+    &:hover {
+      background: linear-gradient(to right, teal, rgb(76, 221, 63));
+      // font-weight: 600;
+      transition: left 0.3s ease-in-out;
+    }
+  }
 }
 
 .pagination {
@@ -125,7 +158,7 @@
     color: white;
     border: none;
     font-size: 12px;
-    cursor: pointer
+    cursor: pointer;
   }
 
   &__currentPage {
