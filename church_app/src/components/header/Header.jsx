@@ -42,7 +42,13 @@ function Header() {
         const response = await axios.get(
           'https://discipleship.onrender.com/api',
         )
-        setUsersData(response.data)
+        localStorage.setItem('discipleData', JSON.stringify(response.data))
+        const retrievedUserData = JSON.parse(
+          localStorage.getItem('discipleData'),
+        )
+        if (retrievedUserData) {
+          setUsersData(retrievedUserData)
+        }
       } catch (error) {
         console.error('Error fetching data:', error)
       }
@@ -77,6 +83,11 @@ function Header() {
   const handleMenuToggle = () => {
     setMenuToggle((prevvState) => !prevvState)
   }
+
+  const signout = () => {
+    localStorage.removeItem('userToken')
+    window.location.reload()
+  }
   return (
     <motion.div
       initial={{ opacity: 0, x: -50 }}
@@ -104,18 +115,30 @@ function Header() {
         className={classes.header__contactUs__register}
       >
         {currentURL.includes('onyeisi') && (
-          <AnimatedButton
-            text={
-              decodedToken && decodedToken.isAdmin ? 'Download Users' : 'Signin'
-            }
-            onClick={
-              decodedToken && decodedToken.isAdmin
-                ? exportToExcel
-                : handleCreateSignin
-            }
-            className={classes.header__contactUs__register__contact}
-            type="button"
-          />
+          <>
+            <AnimatedButton
+              text={
+                decodedToken && decodedToken.isAdmin
+                  ? 'Download Users'
+                  : 'Signin'
+              }
+              onClick={
+                decodedToken && decodedToken.isAdmin
+                  ? exportToExcel
+                  : handleCreateSignin
+              }
+              className={classes.header__contactUs__register__contact}
+              type="button"
+            />
+            {token && (
+              <AnimatedButton
+                text="Signout"
+                onClick={signout}
+                className={classes.header__contactUs__register__contact}
+                type="button"
+              />
+            )}
+          </>
         )}
         <AnimatedButton
           text="Register"
@@ -193,22 +216,34 @@ function Header() {
               }}
             />
             {currentURL.includes('onyeisi') && (
-              <AnimatedButton
-                text={
-                  decodedToken && decodedToken.isAdmin
-                    ? 'Download Users'
-                    : 'Signin'
-                }
-                onClick={
-                  decodedToken && decodedToken.isAdmin
-                    ? exportToExcel
-                    : handleCreateSignin
-                }
-                className={
-                  classes.header__mobileMenu__menucontent__container__sigin
-                }
-                type="button"
-              />
+              <>
+                <AnimatedButton
+                  text={
+                    decodedToken && decodedToken.isAdmin
+                      ? 'Download Users'
+                      : 'Signin'
+                  }
+                  onClick={
+                    decodedToken && decodedToken.isAdmin
+                      ? exportToExcel
+                      : handleCreateSignin
+                  }
+                  className={
+                    classes.header__mobileMenu__menucontent__container__sigin
+                  }
+                  type="button"
+                />
+                {token && (
+                  <AnimatedButton
+                    text="Signout"
+                    onClick={signout}
+                    className={
+                      classes.header__mobileMenu__menucontent__container__sigin
+                    }
+                    type="button"
+                  />
+                )}
+              </>
             )}
 
             <AnimatedButton

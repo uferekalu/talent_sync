@@ -1,20 +1,37 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import Church from '../../components/church'
 import defaultImg from '../../images/main_logo.png'
 import classes from './Admin.module.scss'
-import Text from '../../components/text/Text'
-import AnimatedButton from '../../components/button/Button'
-import building from '../../images/building.jpg'
 import RegisterModal from '../../components/register/RegisterModal'
+import Allusers from '../../components/allusers/Allusers'
 
 function Admin() {
   const [createRegister, setCreateRegister] = useState(false)
+  const [token, setToken] = useState(null)
+  const [decodedToken, setDecodedToken] = useState(null)
 
-  const handleCreateRegister = () => {
-    setCreateRegister(true)
-  }
+  useEffect(() => {
+    const storedToken = localStorage.getItem('userToken')
+    if (storedToken) {
+      setToken(storedToken)
+    }
+  }, [])
+
+  useEffect(() => {
+    try {
+      if (token) {
+        const [header, payload, signature] = token.split('.')
+        const decodedPayload = JSON.parse(atob(payload))
+        setDecodedToken(decodedPayload)
+      }
+    } catch (error) {
+      console.error('Error decoding token:', error)
+    }
+  }, [token])
+
   return (
     <>
       <Church
@@ -28,39 +45,27 @@ function Admin() {
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5 }}
         className={classes.admin}
+        style={{
+          height: token ? '' : '60vh',
+        }}
       >
         <motion.div
-          style={{
-            backgroundImage: `url(${building})`,
-            backgroundSize: 'cover',
-            backgroundRepeat: 'no-repeat',
-          }}
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
           className={classes.admin__heroSection}
         >
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            className={classes.admin__heroSection__left}
-          >
-            <Text
-              text="WELCOME TO DISCIPLESHIP SCHOOL"
-              className={classes.admin__heroSection__left__caption}
-            />
-            <Text
-              text="Join our February 2024 diet"
-              className={classes.admin__heroSection__left__description}
-            />
-            <AnimatedButton
-              text="Register here"
-              onClick={handleCreateRegister}
-              className={classes.admin__heroSection__left__learnmore}
-              type="button"
-            />
-          </motion.div>
+          {!decodedToken && (
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              className={classes.admin__heroSection__info}
+            >
+              Log in to Access <br /> Registered Disciples
+            </motion.div>
+          )}
+          {decodedToken && decodedToken.isAdmin && <Allusers />}
         </motion.div>
       </motion.div>
       <RegisterModal

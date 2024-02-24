@@ -1,0 +1,134 @@
+@import '../../styles/variables.scss';
+
+.allusers {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  &__caption__holder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+
+    &__text {
+      font-size: 16px;
+      color: black;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+  }
+
+  &__categories {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-left: auto;
+    padding: 20px;
+
+    &__totalholder {
+      display: flex;
+      margin-left: auto;
+      gap: 10px;
+      &__caption {
+        display: flex;
+        font-size: 12px;
+        font-weight: 600;
+      }
+      &__number {
+        display: flex;
+        font-size: 12px;
+        font-weight: 600;
+        background-color: bisque;
+        color: black;
+        padding: 6px;
+        border-radius: 4px;
+        margin-top: -5px;
+      }
+    }
+  }
+
+  &__content {
+    @media (min-width: 1221px) {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      padding: 20px;
+      gap: 12px;
+    }
+    @media (max-width: 1220px) {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      padding: 12px;
+      gap: 12px;
+    }
+    @media (max-width: 760px) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding: 12px;
+      gap: 12px;
+    }
+    @media (max-width: 554px) {
+      display: grid;
+      grid-template-columns: 1fr;
+      padding: 12px;
+      gap: 12px;
+    }
+    &__detail {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      background-color: #eceff7;
+      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+      transition:
+        background-color 0.3s,
+        box-shadow 0.3s;
+      border-radius: 7px;
+      padding: 10px;
+
+      &__infoholder {
+        display: flex;
+        gap: 10px;
+
+        &__caption {
+          display: flex;
+          font-size: 12px;
+          font-weight: 700;
+          color: black;
+          width: 100px;
+        }
+
+        &__desc {
+          display: flex;
+          font-size: 12px;
+          color: rgb(45, 42, 42);
+        }
+      }
+    }
+  }
+}
+
+.pagination {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  margin: 10px auto;
+
+  &__content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    background-color: teal;
+    color: white;
+    border: none;
+    font-size: 12px;
+    cursor: pointer
+  }
+
+  &__currentPage {
+    background-color: rgb(2, 2, 44);
+  }
+}
