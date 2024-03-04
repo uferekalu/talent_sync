@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+/* eslint-disable no-nested-ternary */
+/* eslint-disable react/jsx-curly-brace-presence */
+import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import classes from './Home.module.scss'
 import Church from '../../components/church'
@@ -7,6 +9,7 @@ import Text from '../../components/text/Text'
 import AnimatedButton from '../../components/button/Button'
 import cross from '../../images/cross.jpg'
 import RegisterModal from '../../components/register/RegisterModal'
+import SuccessModal from '../../components/success/SuccessModal'
 
 const relevanceData = [
   {
@@ -42,10 +45,30 @@ const relevanceData = [
 
 function Home() {
   const [createRegister, setCreateRegister] = useState(false)
+  const [createSuccessModal, setCreateSuccessModal] = useState(false)
+  const [regSuccess, setRegSuccess] = useState(false)
+  const [successMsg, setSuccessMsg] = useState('')
+  const [serverError, setServerError] = useState('')
+  const [isError, setIsError] = useState(false)
+
+  console.log("successmesag", successMsg)
 
   const handleCreateRegister = () => {
     setCreateRegister(true)
   }
+
+  useEffect(() => {
+    if (regSuccess) {
+      setCreateSuccessModal(true)
+    }
+  }, [regSuccess])
+
+  useEffect(() => {
+    if (serverError) {
+      setCreateSuccessModal(true)
+    }
+  }, [serverError])
+
   return (
     <>
       <Church
@@ -153,7 +176,7 @@ function Home() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
           className={classes.home__contact}
-          id='contactUs'
+          id="contactUs"
         >
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -176,7 +199,6 @@ function Home() {
                 fontWeight: 'bold',
                 cursor: 'pointer',
                 fontSize: '14px',
-                
               }}
               className="bi bi-compass"
             />
@@ -198,7 +220,6 @@ function Home() {
                 fontWeight: 'bold',
                 cursor: 'pointer',
                 fontSize: '14px',
-                
               }}
               className="bi bi-telephone-fill"
             />
@@ -220,7 +241,6 @@ function Home() {
                 fontWeight: 'bold',
                 cursor: 'pointer',
                 fontSize: '14px',
-                
               }}
               className="bi bi-telephone-fill"
             />
@@ -242,7 +262,6 @@ function Home() {
                 fontWeight: 'bold',
                 cursor: 'pointer',
                 fontSize: '14px',
-                
               }}
               className="bi bi-globe"
             />
@@ -256,6 +275,22 @@ function Home() {
         <RegisterModal
           createRegister={createRegister}
           setCreateRegister={setCreateRegister}
+          setRegSuccess={setRegSuccess}
+          setSuccessMsg={setSuccessMsg}
+          setServerError={setServerError}
+          setIsError={setIsError}
+        />
+        <SuccessModal
+          createSuccessModal={createSuccessModal}
+          setCreateSuccessModal={setCreateSuccessModal}
+          successMsg={
+            serverError
+              ? `${serverError}`
+              : successMsg
+                ? `${successMsg}`
+                : ""
+          }
+          isError={isError}
         />
       </motion.div>
     </>
