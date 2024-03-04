@@ -1,3 +1,5 @@
+/* eslint-disable react/require-default-props */
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-curly-brace-presence */
 /* eslint-disable no-undef */
 import React, { useState } from 'react'
@@ -10,8 +12,16 @@ import classes from './RegisterModal.module.scss'
 import AnimatedInput from '../input/AnimatedInput'
 import AnimatedButton from '../button/Button'
 import DismissibleAlert from '../alert/AlertComp'
+import Spinner from '../spinner/Spinner'
 
-function RegisterModal({ createRegister, setCreateRegister }) {
+function RegisterModal({
+  createRegister,
+  setCreateRegister,
+  setRegSuccess,
+  setSuccessMsg,
+  setServerError,
+  setIsError
+}) {
   const [userData, setUserData] = useState({
     firstname: '',
     surname: '',
@@ -24,10 +34,8 @@ function RegisterModal({ createRegister, setCreateRegister }) {
     country: '',
     medium: '',
   })
-  const [successMsg, setSuccessMsg] = useState('')
   const [errorMsg, setErrorMsg] = useState({})
-  const [serverError, setServerError] = useState('')
-  const [registrationSuccess, setRegistrationSuccess] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   const handleInputChange = (event) => {
     const { name, value } = event.target
@@ -81,6 +89,7 @@ function RegisterModal({ createRegister, setCreateRegister }) {
       setErrorMsg(newErrors)
     } else {
       try {
+        setLoading(true)
         const response = await fetch('https://discipleship.onrender.com/api', {
           method: 'POST',
           headers: {
@@ -91,19 +100,24 @@ function RegisterModal({ createRegister, setCreateRegister }) {
         if (!response.ok) {
           const errorMessage = await response.json()
           if (response.status === 400) {
+            setLoading(false)
+            setIsError(true)
             setServerError(errorMessage.error)
+            setCreateRegister(false)
           }
           return
         }
         const data = await response.json()
         if (data.message) {
-          setRegistrationSuccess(true)
-          setTimeout(() => {
-            setCreateRegister(false)
-            window.location.reload()
-          }, 3000)
+          setLoading(false)
+          setRegSuccess(true)
+          setSuccessMsg(data.message)
+          setCreateRegister(false)
+          // setTimeout(() => {
+          //   setCreateRegister(false)
+          //   window.location.reload()
+          // }, 3000)
         }
-        setSuccessMsg(data.message)
         setUserData({
           firstname: '',
           surname: '',
@@ -137,22 +151,6 @@ function RegisterModal({ createRegister, setCreateRegister }) {
       }}
     >
       <Modal.Body className={classes.register__form}>
-        {registrationSuccess && (
-          <DismissibleAlert
-            variant="success"
-            message={successMsg}
-            duration={3000}
-            onClose={() => setRegistrationSuccess(false)}
-          />
-        )}
-        {serverError && (
-          <DismissibleAlert
-            variant="danger"
-            message={serverError}
-            duration={3000}
-            onClose={() => setServerError('')}
-          />
-        )}
         <motion.form className={classes.register__form}>
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -319,12 +317,28 @@ function RegisterModal({ createRegister, setCreateRegister }) {
           {errorMsg.country && (
             <span className={classes.error}>{errorMsg.country}</span>
           )}
-          <AnimatedButton
-            text="Submit"
-            type="button"
-            onClick={handleRegister}
-            className={classes.register__form__registerBtn}
-          />
+          {loading && (
+            <motion.button
+              // whileHover={{ scale: 1.05 }}
+              // whileTap={{ scale: 0.9 }}
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              className={classes.register__form__spinner}
+              type={"button"}
+              disabled
+            >
+              <Spinner />
+            </motion.button>
+          )}
+          {!loading && (
+            <AnimatedButton
+              text="Submit"
+              type="button"
+              onClick={handleRegister}
+              className={classes.register__form__registerBtn}
+            />
+          )}
         </motion.form>
       </Modal.Body>
     </GeneralModal>
@@ -334,6 +348,10 @@ function RegisterModal({ createRegister, setCreateRegister }) {
 RegisterModal.propTypes = {
   createRegister: PropTypes.bool.isRequired,
   setCreateRegister: PropTypes.func.isRequired,
+  setRegSuccess: PropTypes.func,
+  setServerError: PropTypes.func,
+  setIsError: PropTypes.func,
+  setSuccessMsg: PropTypes.func,
 }
 
 export default RegisterModal

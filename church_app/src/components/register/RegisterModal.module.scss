@@ -108,6 +108,24 @@
     flex-direction: column;
     width: 48%;
   }
+
+  &__spinner {
+    @media (max-width: 560px) {
+      width: 100%;
+    }
+    background: linear-gradient(to right, rgb(193, 229, 179), rgb(155, 236, 146));
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+  }
 }
 .error {
   color: red;
