@@ -106,7 +106,7 @@ function Home() {
               className={classes.home__heroSection__left__caption}
             />
             <Text
-              text="Join our February 2024 diet"
+              text="Join our August 2024 Diet"
               className={classes.home__heroSection__left__description}
             />
             <AnimatedButton
