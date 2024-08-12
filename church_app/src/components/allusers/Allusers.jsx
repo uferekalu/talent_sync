@@ -30,7 +30,9 @@ function Allusers() {
   useEffect(() => {
     const handleFilterkit = () => {
       if (filterKit) {
-        const data = registeredUsers.filter((user) => user.kit === filterKit)
+        const data = registeredUsers.filter(
+          (user) => user.kit === filterKit && user.diet === 'August 2024',
+        )
         const startIndex = (currentPage - 1) * resultsPerPage
         const endIndex = startIndex + resultsPerPage
         const results = data.slice(startIndex, endIndex)
@@ -44,7 +46,9 @@ function Allusers() {
   useEffect(() => {
     const startIndex = (currentPage - 1) * resultsPerPage
     const endIndex = startIndex + resultsPerPage
-    const results = registeredUsers.slice(startIndex, endIndex)
+    const results = registeredUsers
+      .filter((user) => user.diet === 'August 2024')
+      .slice(startIndex, endIndex)
     setPaginatedResults(results)
   }, [currentPage, registeredUsers])
 
@@ -59,14 +63,15 @@ function Allusers() {
   }, [])
 
   const handleCurrentPage = (num) => {
-    console.log('button clicked', num)
     setCurrentPage(num)
   }
 
   const exportToExcel = () => {
     const wb = XLSX.utils.book_new()
     const ws = XLSX.utils.json_to_sheet(
-      filterKit ? filteredResult : registeredUsers,
+      filterKit
+        ? filteredResult
+        : registeredUsers.filter((user) => user.diet === 'August 2024'),
     )
     XLSX.utils.book_append_sheet(wb, ws, 'Users Data')
     XLSX.writeFile(wb, 'users_data.xlsx')
@@ -98,26 +103,36 @@ function Allusers() {
       >
         <AllUsersCategory
           title="Total Registered Disciples:"
-          value={registeredUsers?.length}
+          value={
+            registeredUsers.filter((user) => user.diet === 'August 2024')
+              ?.length
+          }
         />
         <AllUsersCategory
           title="Disciples for Arrival Kit:"
           value={
-            registeredUsers.filter((user) => user.kit === 'Arrival Kit').length
+            registeredUsers.filter(
+              (user) =>
+                user.kit === 'Arrival Kit' && user.diet === 'August 2024',
+            ).length
           }
         />
         <AllUsersCategory
           title="Disciples for Survival Kit 1:"
           value={
-            registeredUsers.filter((user) => user.kit === 'Survival Kit 1')
-              .length
+            registeredUsers.filter(
+              (user) =>
+                user.kit === 'Survival Kit 1' && user.diet === 'August 2024',
+            ).length
           }
         />
         <AllUsersCategory
           title="Disciples for Survival Kit 2:"
           value={
-            registeredUsers.filter((user) => user.kit === 'Survival Kit 2')
-              .length
+            registeredUsers.filter(
+              (user) =>
+                user.kit === 'Survival Kit 2' && user.diet === 'August 2024',
+            ).length
           }
         />
       </motion.div>
@@ -157,6 +172,17 @@ function Allusers() {
           type="button"
         />
       </motion.div>
+      {paginatedFilteredResult?.length === 0 &&
+        paginatedResults?.length === 0 && (
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className={classes.allusers__noRegistered__disciples}
+          >
+            No Registered Disciples for August 2024 Diet
+          </motion.div>
+        )}
       <motion.div
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
@@ -221,7 +247,7 @@ function Allusers() {
       </motion.div>
       <RenderPagination
         totalResults={
-          filterKit ? filteredResult?.length : registeredUsers?.length
+          filterKit ? filteredResult?.length : paginatedResults?.length
         }
         resultsPerPage={resultsPerPage}
         handleCurrentPage={handleCurrentPage}

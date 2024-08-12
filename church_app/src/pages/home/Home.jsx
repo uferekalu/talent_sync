@@ -52,8 +52,6 @@ function Home() {
   const [serverError, setServerError] = useState('')
   const [isError, setIsError] = useState(false)
 
-  console.log("successmesag", successMsg)
-
   const handleCreateRegister = () => {
     setCreateRegister(true)
   }
