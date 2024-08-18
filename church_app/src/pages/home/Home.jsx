@@ -2,6 +2,7 @@
 /* eslint-disable no-nested-ternary */
 /* eslint-disable react/jsx-curly-brace-presence */
 import React, { useEffect, useState } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import classes from './Home.module.scss'
 import Church from '../../components/church'
@@ -45,16 +46,25 @@ const relevanceData = [
 ]
 
 function Home() {
-  const [createRegister, setCreateRegister] = useState(false)
   const [createSuccessModal, setCreateSuccessModal] = useState(false)
   const [regSuccess, setRegSuccess] = useState(false)
   const [successMsg, setSuccessMsg] = useState('')
   const [serverError, setServerError] = useState('')
   const [isError, setIsError] = useState(false)
+  const navigate = useNavigate()
+  const location = useLocation()
 
-  const handleCreateRegister = () => {
-    setCreateRegister(true)
-  }
+  const params = new URLSearchParams(location.search)
+  const hasAccepted = params.get('hasAccepted')
+
+  const setCreateRegister = (value) => {
+    if (!value) {
+      params.delete('hasAccepted');
+      navigate({
+        search: params.toString(),
+      });
+    }
+  };
 
   useEffect(() => {
     if (regSuccess) {
@@ -109,7 +119,7 @@ function Home() {
             />
             <AnimatedButton
               text="Register here"
-              onClick={handleCreateRegister}
+              onClick={() => navigate("/agreement")}
               className={classes.home__heroSection__left__learnmore}
               type="button"
             /> 
@@ -272,12 +282,13 @@ function Home() {
         </motion.div>
 
         <RegisterModal
-          createRegister={createRegister}
+          createRegister={hasAccepted === 'true'} 
           setCreateRegister={setCreateRegister}
           setRegSuccess={setRegSuccess}
           setSuccessMsg={setSuccessMsg}
           setServerError={setServerError}
           setIsError={setIsError}
+          params={params}
         />
         <SuccessModal
           createSuccessModal={createSuccessModal}

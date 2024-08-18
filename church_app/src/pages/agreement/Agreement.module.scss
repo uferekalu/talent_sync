@@ -1,0 +1,88 @@
+@import '../../styles//variables.scss';
+
+.agreement {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  min-height: 100vh;
+  width: 85%;
+  margin-top: 20px;
+  @media (min-width: 780px) {
+    width: 70%;
+    margin-top: -30px;
+  }
+  &__caption {
+    display: flex;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  &__content {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: justify;
+  }
+  &__instruction {
+    margin-top: 10px;
+    font-size: 14px;
+  }
+  &__keypoint {
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  &__agreeBtnHolder {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+    @media (max-width: 560px) {
+      justify-content: space-between;
+    }
+  }
+  &__agreeBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(
+      to right,
+      rgb(15, 147, 154),
+      rgba(63, 136, 221, 1)
+    );
+    border-radius: 4px;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 12px;
+    // width: 100px;
+
+    cursor: pointer;
+    &:hover {
+      background: linear-gradient(to right, green, rgb(76, 221, 63));
+      font-weight: 600;
+      transition: left 0.3s ease-in-out;
+    }
+  }
+  &__cancelBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, rgb(133, 45, 98), rgb(193, 72, 84));
+    border-radius: 4px;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 12px;
+    // width: 100px;
+
+    cursor: pointer;
+    &:hover {
+      background: linear-gradient(to right, rgb(13, 14, 13), rgb(17, 18, 17));
+      font-weight: 600;
+      transition: left 0.3s ease-in-out;
+    }
+  }
+}

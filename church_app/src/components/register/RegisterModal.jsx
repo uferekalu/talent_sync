@@ -3,6 +3,7 @@
 /* eslint-disable react/jsx-curly-brace-presence */
 /* eslint-disable no-undef */
 import React, { useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { Modal } from 'react-bootstrap'
 import { motion } from 'framer-motion'
 import PropTypes from 'prop-types'
@@ -13,6 +14,7 @@ import AnimatedInput from '../input/AnimatedInput'
 import AnimatedButton from '../button/Button'
 import DismissibleAlert from '../alert/AlertComp'
 import Spinner from '../spinner/Spinner'
+import CheckAgreement from '../CheckAgreement'
 
 function RegisterModal({
   createRegister,
@@ -20,7 +22,7 @@ function RegisterModal({
   setRegSuccess,
   setSuccessMsg,
   setServerError,
-  setIsError
+  setIsError,
 }) {
   const [userData, setUserData] = useState({
     firstname: '',
@@ -36,6 +38,7 @@ function RegisterModal({
   })
   const [errorMsg, setErrorMsg] = useState({})
   const [loading, setLoading] = useState(false)
+  const [isChecked, setIsChecked] = useState(false)
 
   const handleInputChange = (event) => {
     const { name, value } = event.target
@@ -83,6 +86,10 @@ function RegisterModal({
     }
     if (userData.medium.trim() === '') {
       newErrors.medium = 'Medium cannot be empty'
+    }
+    if (!isChecked) {
+      newErrors.confirmAgreement =
+        'You must check the box to confirm that you have agreed to put in time and efforts as required'
     }
 
     if (Object.keys(newErrors).length > 0) {
@@ -317,6 +324,10 @@ function RegisterModal({
           {errorMsg.country && (
             <span className={classes.error}>{errorMsg.country}</span>
           )}
+          <CheckAgreement isChecked={isChecked} setIsChecked={setIsChecked} setErrorMsg={setErrorMsg} />
+          {errorMsg.confirmAgreement && (
+            <span className={classes.error}>{errorMsg.confirmAgreement}</span>
+          )}
           {loading && (
             <motion.button
               // whileHover={{ scale: 1.05 }}
@@ -325,7 +336,7 @@ function RegisterModal({
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
               className={classes.register__form__spinner}
-              type={"button"}
+              type={'button'}
               disabled
             >
               <Spinner />

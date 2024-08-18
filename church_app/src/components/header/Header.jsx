@@ -142,7 +142,7 @@ function Header() {
         )}
         <AnimatedButton
           text="Register"
-          onClick={handleCreateRegister}
+          onClick={() => navigate('/agreement')}
           className={classes.header__contactUs__register__signup}
           type="button"
         />
@@ -248,7 +248,10 @@ function Header() {
 
             <AnimatedButton
               text="Register"
-              onClick={handleCreateRegister}
+              onClick={() => {
+                navigate('/agreement')
+                setMenuToggle(false)
+              }}
               className={
                 classes.header__mobileMenu__menucontent__container__signup
               }
